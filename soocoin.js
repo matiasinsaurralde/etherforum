@@ -1,10 +1,13 @@
 var fs = require( 'fs' ),
     util = require( 'util' ),
     crypto = require( 'crypto' ),
+    bs58 = require( 'bs58' ),
     EventEmitter = require( 'events' ),
     NodeRSA = require( 'node-rsa' );
 
 var Soocoin = function( params ) {
+  this.addressFor = function( pubKey ) {
+  };
 };
 
 Soocoin.wallet = function( params ) {
@@ -25,7 +28,9 @@ Soocoin.wallet = function( params ) {
   });
 
   self.getAddress = function() {
-    return crypto.createHash( 'sha1' ).update( self.pubKey ).digest('hex');
+    var sha1 = crypto.createHash( 'sha256' ).update( self.pubKey ).digest('hex'),
+        addr = bs58.encode( sha1 );
+    return addr.slice( 0, 33 ); // ???
   };
 
 };
