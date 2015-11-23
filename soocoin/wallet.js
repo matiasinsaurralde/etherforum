@@ -52,7 +52,7 @@ Soocoin.wallet = function( params ) {
     var tx = { input: self.getAddress(), amount: amount, dest: dest },
         signedTx = self.sign( tx );
 
-    self.validate( signedTx, callback );
+    callback( signedTx );
 
   };
 
@@ -67,7 +67,7 @@ Soocoin.wallet = function( params ) {
     console.log( '-> validando', buf );
     var tx = JSON.parse( buf );
     // console.log( tx );
-    self.readBlockchain();
+    // self.readBlockchain();
   };
 
   self.saveToBlockchain = function() {
@@ -77,4 +77,4 @@ Soocoin.wallet = function( params ) {
 
 util.inherits( Soocoin.wallet, EventEmitter );
 
-module.exports = Soocoin;
+module.exports = Soocoin.wallet;
