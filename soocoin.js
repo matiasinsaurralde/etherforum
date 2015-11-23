@@ -5,14 +5,12 @@ var fs = require( 'fs' ),
     EventEmitter = require( 'events' ),
     NodeRSA = require( 'node-rsa' );
 
-var Soocoin = function( params ) {
-  this.addressFor = function( pubKey ) {
-  };
-};
+var Soocoin = {};
 
 Soocoin.wallet = function( params ) {
 
-  var self = this;
+  var self = this,
+      address;
 
   console.info( '-> inicializando wallet', params );
 
@@ -24,22 +22,46 @@ Soocoin.wallet = function( params ) {
     contents = JSON.parse( contents );
     self.pubKey = contents.public,
     self.privKey = contents.private;
+
+    self.key = new NodeRSA( self.privKey );
+
     self.emit( 'ready' );
   });
 
   self.getAddress = function() {
-    var sha1 = crypto.createHash( 'sha256' ).update( self.pubKey ).digest('hex'),
-        addr = bs58.encode( sha1 );
-    return addr.slice( 0, 33 ); // ???
+    if( !address ) {
+      var sha1 = crypto.createHash( 'sha256' ).update( self.pubKey ).digest('hex'),
+          addr = bs58.encode( sha1 );
+      self.address = addr.slice( 0, 33 ); // ???
+    };
+    return self.address;
+  };
+
+  self.send = function( amount, dest ) {
+    // enviar so'ocoins
+    var tx = { input: self.getAddress(), amount: amount, dest: dest },
+        output = [],
+        buf;
+    output[0] =  self.key.sign( tx );
+    output[1] = tx;
+
+    buf = new Buffer( JSON.stringify(output) );
+    console.log(buf.length);
   };
 
 };
 
 util.inherits( Soocoin.wallet, EventEmitter );
+util.inherits( Soocoin, Soocoin.wallet );
 
 var wallet = new Soocoin.wallet( { keys: 'admin_keys' } );
 
 wallet.on( 'ready', function() {
-  console.log( '-> wallet lista!', wallet );
-  console.log( '-> direccion', wallet.getAddress() );
+  console.info( '-> wallet lista!' );
+  console.info( '-> direccion', wallet.getAddress() );
+
+  wallet.send( 100000000, '7xjySUAgyzre2b41PDqKByj9fbknRLvxJ', function() {
+    console.log( 'done!' );
+  });
 });
+ 
