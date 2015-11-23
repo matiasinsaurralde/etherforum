@@ -77,14 +77,4 @@ Soocoin.wallet = function( params ) {
 
 util.inherits( Soocoin.wallet, EventEmitter );
 
-var wallet = new Soocoin.wallet( { keys: 'admin_keys' } );
-
-wallet.on( 'ready', function() {
-  console.info( '-> wallet lista!' );
-  console.info( '-> direccion', wallet.getAddress() );
-
-  wallet.send( 100000000, '7xjySUAgyzre2b41PDqKByj9fbknRLvxJ', function() {
-    console.log( 'done!' );
-  });
-});
- 
+module.exports = Soocoin;
