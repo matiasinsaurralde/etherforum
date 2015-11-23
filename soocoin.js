@@ -1,5 +1,6 @@
 var fs = require( 'fs' ),
     util = require( 'util' ),
+    crypto = require( 'crypto' ),
     EventEmitter = require( 'events' ),
     NodeRSA = require( 'node-rsa' );
 
@@ -23,6 +24,10 @@ Soocoin.wallet = function( params ) {
     self.emit( 'ready' );
   });
 
+  self.getAddress = function() {
+    return crypto.createHash( 'sha1' ).update( self.pubKey ).digest('hex');
+  };
+
 };
 
 util.inherits( Soocoin.wallet, EventEmitter );
@@ -31,4 +36,5 @@ var wallet = new Soocoin.wallet( { keys: 'admin_keys' } );
 
 wallet.on( 'ready', function() {
   console.log( '-> wallet lista!', wallet );
+  console.log( '-> direccion', wallet.getAddress() );
 });
