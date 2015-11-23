@@ -1,0 +1,14 @@
+{
+  "name": "cryptoforum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matias Insaurralde <matias@insaurral.de>",
+  "license": "ISC",
+  "dependencies": {
+    "node-rsa": "^0.2.26"
+  }
+}
