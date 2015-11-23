@@ -37,22 +37,45 @@ Soocoin.wallet = function( params ) {
     return self.address;
   };
 
-  self.send = function( amount, dest ) {
-    // enviar so'ocoins
-    var tx = { input: self.getAddress(), amount: amount, dest: dest },
-        output = [],
+  self.sign = function( content ) {
+    var output = [],
         buf;
-    output[0] =  self.key.sign( tx );
-    output[1] = tx;
+    output[0] = self.key.sign( content ).toString( 'hex' );
+    output[1] = content;
 
-    buf = new Buffer( JSON.stringify(output) );
-    console.log(buf.length);
+    buf = new Buffer( JSON.stringify( output ) );
+
+    return buf;
+  };
+
+  self.send = function( amount, dest, callback ) {
+    var tx = { input: self.getAddress(), amount: amount, dest: dest },
+        signedTx = self.sign( tx );
+
+    self.validate( signedTx, callback );
+
+  };
+
+  self.readBlockchain = function() {
+    console.log( '-> leer blockchain' );
+    fs.readFile( 'blockchain', function( err, data ) {
+      console.log(1,err,data);
+    });
+  };
+
+  self.validate = function( buf ) {
+    console.log( '-> validando', buf );
+    var tx = JSON.parse( buf );
+    // console.log( tx );
+    self.readBlockchain();
+  };
+
+  self.saveToBlockchain = function() {
   };
 
 };
 
 util.inherits( Soocoin.wallet, EventEmitter );
-util.inherits( Soocoin, Soocoin.wallet );
 
 var wallet = new Soocoin.wallet( { keys: 'admin_keys' } );
 
