@@ -9,7 +9,10 @@
   "author": "Matias Insaurralde <matias@insaurral.de>",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.5.0",
     "bs58": "^3.0.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
     "node-rsa": "^0.2.26",
     "rsa-json": "^0.2.0"
   }
