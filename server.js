@@ -1,13 +1,4 @@
-var dgram = require( 'dgram' );
+var Soocoin = require( './soocoin' ),
+    server = new Soocoin.server( { port: 7777 } );
 
-var Server = function() {
-  var s = dgram.createSocket('udp4');
-  this.start = function() {
-    console.info( 'Server start!' );
-    s.bind( 7777, function() {
-      console.info( 'Listening @7777' );
-    });
-  };
-};
-
-module.exports = Server;
+server.start();
