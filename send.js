@@ -13,6 +13,6 @@ wallet.on( 'ready', function() {
     client.send( tx );
   });
 */
-//  client.create_forum( 'un foro de prueba' );
+  client.create_forum( 'un foro de prueba' );
 
 });
