@@ -18,6 +18,7 @@ do {
 console.log( 'privKey', privKey );
 
 // get the public key in a compressed format
+
 var pubKey = secp256k1.publicKeyCreate(privKey)
 
 console.log( 'pubKey', pubKey );
@@ -27,7 +28,11 @@ var sigObj = secp256k1.signSync(msg, privKey)
 
 console.log( sigObj );
 
-// verify the signature
-console.log(secp256k1.verifySync( msg, sigObj.signature, pubKey))
+var a = secp256k1.recoverSync( msg, sigObj.signature, 1 );
 
-console.log(secp256k1.verifySync( msg.fill( 0 ), sigObj.signature, pubKey))
+console.log('a',a);
+
+// verify the signature
+console.log(secp256k1.verifySync( msg, sigObj.signature, 0))
+
+// console.log(secp256k1.verifySync( msg.fill( 0 ), sigObj.signature, pubKey))
