@@ -3,7 +3,8 @@ var fs = require( 'fs' ),
     crypto = require( 'crypto' ),
     bs58 = require( 'bs58' ),
     EventEmitter = require( 'events' ),
-    NodeRSA = require( 'node-rsa' );
+    NodeRSA = require( 'node-rsa' ),
+    secp256k1 = require( 'secp256k1' );
 
 var Soocoin = {};
 
@@ -24,6 +25,7 @@ Soocoin.wallet = function( params ) {
     self.privKey = contents.private;
 
     self.key = new NodeRSA( self.privKey );
+    self.publicKey = new NodeRSA( self.pubKey );
 
     self.emit( 'ready' );
   });
@@ -40,8 +42,26 @@ Soocoin.wallet = function( params ) {
   self.sign = function( content ) {
     var output = [],
         buf;
+
+    content = new Buffer(JSON.stringify(content));
+
     output[0] = self.key.sign( content ).toString( 'hex' );
     output[1] = content;
+
+var a = new Buffer('asdf');
+
+var firma = self.key.sign( a );
+
+console.log( 'firma', firma );
+
+console.log( 'contenido a firmar', a );
+
+// console.log( 'verificacion', self.publicKey.verify( a, firma ) );
+
+var salida = secp256k1.recoverSync( a, firma, 0 );
+console.log( 'secp verificacion', salida );
+
+// console.log( 'verifying - ', self.publicKey.verify( content, output[0] ) );
 
     buf = new Buffer( JSON.stringify( output ) );
 
