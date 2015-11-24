@@ -75,6 +75,8 @@ Soocoin.server = function( params ) {
 
       console.log( '(server/queue) pushing tx' );
 
+      console.log( 'tx', tx, 'rawtx', rawTx );
+
       self.validationQueue.push( { tx: tx,  raw: rawTx} );
       // self.appendToBlockchain( msg );
     });
