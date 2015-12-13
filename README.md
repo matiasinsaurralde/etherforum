@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 proposicion de reglas
 ===
 
@@ -12,3 +13,7 @@ crear un foro tiene un costo de 10.000 so'o coins (?)
 
 cuando uno comenta un topico, gana 50'i.
 
+=======
+# cryptoforum
+decentralized forum proof of concept
+>>>>>>> 9028a910eced3a8776321220aa98e9c667ae5dd0
