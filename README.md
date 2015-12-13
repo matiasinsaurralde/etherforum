@@ -1,3 +1,2 @@
 # cryptoforum
-decentralized forum proof of concept?
-
+decentralized forum proof of concept
