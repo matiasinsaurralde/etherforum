@@ -8,7 +8,9 @@ I'm including a few contract templates, and I would be happy to provide a setup 
 
 ## Requirements
 
-You will need some ether, but also it should be possible to run it locally (devnet).
+Some ether and patience?
+
+You may run it locally (devnet) as well!
 
 ## Ideas
 
