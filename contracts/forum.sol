@@ -17,6 +17,8 @@ contract ForumContract {
         string content;
     }
 
+    event readMessage(string title, string content);
+
     function createForum( string name ) returns( uint forumID ) {
         forumID = forumCount++;
         Forum f = forums[ forumID ];
@@ -31,13 +33,13 @@ contract ForumContract {
 
         m.title = title;
         m.content = content;
-
     }
 
-    function getMessage( uint forum, uint message ) returns( string content ) {
+    function getMessage( uint forum, uint message ) {
         Forum f = forums[ forum ];
         Message m = f.messages[ message ];
-        content = m.content;
+
+        readMessage( m.title, m.content );
     }
 
 }
