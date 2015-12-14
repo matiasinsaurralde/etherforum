@@ -1,0 +1,21 @@
+{
+  "name": "cforum",
+  "homepage": "https://github.com/matiasinsaurralde/cforum",
+  "authors": [
+    "Matias Insaurralde <matias@insaurral.de>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
