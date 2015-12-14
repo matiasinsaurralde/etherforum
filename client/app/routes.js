@@ -14,4 +14,11 @@ function routes( $stateProvider, $urlRouterProvider) {
       '@': { templateUrl: 'app/views/forums.html' }
     }
   })
+  .state( 'forums.create', {
+    name: 'forums.create',
+    url: '/create',
+    views: {
+      '@': { templateUrl: 'app/views/forums_create.html' }
+    }
+  })
 }
