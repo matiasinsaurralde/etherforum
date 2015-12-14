@@ -1,4 +1,4 @@
-angular.module('cryptoforum', [ 'ui.router' ])
+angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
 .controller( 'HomeCtrl', HomeCtrl )
 .config( config )
 .config( routes )
