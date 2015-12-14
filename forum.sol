@@ -1,38 +1,43 @@
-contract Forum {
+contract ForumContract {
 
-  address public owner;
-  string public name;
+    mapping ( uint => Forum ) public forums;
+    // mapping( uint => Message ) public messages;
 
-  struct Topic {
-    string title;
-    string content;
-  }
+    uint public forumCount;
 
-  mapping ( uint => Topic ) public topics;
-  uint public numTopics;
+    struct Forum {
+        address owner;
+        string name;
+        mapping( uint => Message ) messages;
+        uint messageCount;
+    }
 
+    struct Message {
+        string title;
+        string content;
+    }
 
-  function Forum( string _name ) {
-    name = _name;
-    owner = msg.sender;
+    function createForum( string name ) returns( uint forumID ) {
+        forumID = forumCount++;
+        Forum f = forums[ forumID ];
+        f.name = name;
+        f.owner = msg.sender;
+    }
+    function createMessage( string title, string content, uint forum ) returns( uint messageID ) {
 
-    numTopics = 0;
-  }
+        Forum f = forums[ forum ];
+        messageID = f.messageCount++;
+        Message m = f.messages[ messageID ];
 
-  function addTopic( string title, string content ) public returns ( uint topicId ) {
+        m.title = title;
+        m.content = content;
 
-    // topics.push( Topic( title, content, msg.sender  ) );
-    topicId = numTopics++;
+    }
 
-    Topic topic = topics[topicId];
-    topic.title = title;
-    topic.content = content;
-
-  }
-
-  function getTopic( uint id ) public returns( string topic_title ) {
-      Topic topic = topics[id];
-      topic_title = topic.title;
-  }
+    function getMessage( uint forum, uint message ) returns( string content ) {
+        Forum f = forums[ forum ];
+        Message m = f.messages[ message ];
+        content = m.content;
+    }
 
 }
