@@ -5,6 +5,8 @@
 
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-ui-router-anim-in-out/anim-in-out.js"></script>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -14,6 +16,8 @@
   <script src="app/controllers/home.js"></script>
   <script src="app/routes.js"></script>
   <script src="app/init.js"></script>
+
+  <link rel="stylesheet" href="bower_components/angular-ui-router-anim-in-out/css/anim-in-out.css">
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="resources/stylesheets/app.css">
@@ -38,7 +42,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Forums</a></li>
+            <li ui-sref-active="active" ui-sref="forums"><a href="#">Forums</a></li>
             <li><a href="#">Topics</a></li>
             <li><a href="#">About</a></li>
             <!--
@@ -68,7 +72,7 @@
     </nav>
 
     <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron" ui-view>
+    <div ui-view class="jumbotron anim-in-out anim-fade" data-anim-in-speed="500" data-anim-out-speed="300">
     </div>
 
     <footer class="footer">
