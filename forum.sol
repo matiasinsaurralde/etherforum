@@ -6,11 +6,9 @@ contract Forum {
   struct Topic {
     string title;
     string content;
-
-    address author;
   }
 
-  mapping ( uint => Topic ) topics;
+  mapping ( uint => Topic ) public topics;
   uint public numTopics;
 
 
@@ -25,7 +23,16 @@ contract Forum {
 
     // topics.push( Topic( title, content, msg.sender  ) );
     topicId = numTopics++;
+
+    Topic topic = topics[topicId];
+    topic.title = title;
+    topic.content = content;
+
+  }
+
+  function getTopic( uint id ) public returns( string topic_title ) {
+      Topic topic = topics[id];
+      topic_title = topic.title;
   }
 
 }
-
