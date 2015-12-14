@@ -17,5 +17,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "ui.bootstrap": "~0.14.3"
+  }
 }
