@@ -1,11 +1,6 @@
 var gulp = require("gulp");
 var concat = require("gulp-concat");
-var html2js = require("gulp-ng-html2js");
-var sass = require("gulp-sass");
 var clean = require("gulp-clean");
-var streamqueue = require("streamqueue");
-
-var ngDepOrder = require("gulp-ng-deporder");
 
 var paths = {
     "dist": "../server/staffing/static/",
@@ -47,20 +42,11 @@ gulp.task("vendor", function () {
 });
 
 gulp.task("scripts", function () {
-    var stream = streamqueue({objectMode: true});
-    stream.queue(gulp.src(paths.scripts)
-        .pipe(ngDepOrder()));
-    stream.queue(gulp.src(paths.templates)
-        .pipe(html2js({moduleName: "templates"})));
-    return stream.done()
-        .pipe(concat("app.js"))
-        .pipe(gulp.dest(paths.dist + "js/"))
 });
 
 gulp.task("styles", function () {
     gulp.src(paths.styles)
-        .pipe(sass())
-        .pipe(concat("staffing.css"))
+        .pipe(concat("base.css"))
         .pipe(gulp.dest(paths.dist + "css/"))
 })
 
