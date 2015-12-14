@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="cryptoforum">
+<head>
+  <title>cryptoforum</title>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="app/controllers/home.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/init.js"></script>
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/stylesheets/app.css">
+
+</head>
+<body>
+  <div>
+    header
+  </div>
+  <div ui-view></div>
+
+  <div>
+    footer
+  </div>
+</body>
+</html>
