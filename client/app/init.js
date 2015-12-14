@@ -8,7 +8,7 @@ angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
   $rootScope.web3 = web3;
   window.web3 = web3;
 
-  $rootScope.$watch( $rootScope.web3.eth.getBalance(web3.eth.coinbase).c ) // :p
+  // $rootScope.$watch( $rootScope.web3.eth.getBalance(web3.eth.coinbase).c ) // :p
 }]);
 
 config.$inject = ['$urlRouterProvider', '$locationProvider' ];
