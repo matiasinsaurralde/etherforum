@@ -1,7 +1,12 @@
+<div ng-controller="ForumCtrl as f">
 <h3>Forums</h3>
-<p>No forums!</p>
+<p ng-if="f.forums.length == 0">No forums!</p>
+<div ng-if="f.forums.length > 0" ng-repeat="forum in f.forums">
+  <p>{{ forum.name }}, Owner: {{ forum.owner }}, TotalMsg: {{ forum.totalMessages }}</p>
+</div>
 <p>
   <a ui-sref="forums.create" class="btn btn-lg btn-primary" role="button">Create a forum &raquo;</a>
 </p>
 
 
+</div>
