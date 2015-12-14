@@ -7,3 +7,7 @@ body {
 #navbar {
   padding-right: 0px;
 }
+
+.anim-in-out.anim-in-setup {
+    position: absolute;
+}
