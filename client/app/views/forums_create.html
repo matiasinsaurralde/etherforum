@@ -1,10 +1,10 @@
 <h3>Forums</h3>
 <p>Creating a new forum:</p>
-<form class="form-horizontal">
+<form class="form-horizontal" ng-controller="ForumCtrl as f">
   <div class="form-group">
     <label for="forumName" class="col-sm-2 control-label">Name:</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" id="forumName" ng-model="forum.name" placeholder="Forum name...">
+      <input type="text" class="form-control" id="forumName" ng-model="forum.name" placeholder="Forum name..." required>
     </div>
   </div>
   <div class="form-group">
@@ -14,8 +14,14 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="forumContract" class="col-sm-2 control-label">Default contract:</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="forumContract" ng-value="defaultContract.id.toString(16)" disabled>
+    </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Create</button>
+      <button type="submit" class="btn btn-default" ng-click="f.createForum( forum )">Create</button>
     </div>
   </div>
 </form>
