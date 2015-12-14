@@ -1,2 +1,9 @@
 body {
+  background-color: #ecf0f1;
+  font-family: 'Roboto', sans-serif;
+  padding: 1em;
+}
+
+#navbar {
+  padding-right: 0px;
 }
