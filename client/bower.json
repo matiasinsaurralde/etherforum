@@ -22,6 +22,7 @@
     "angular": "~1.4.8",
     "ui.bootstrap": "~0.14.3",
     "bootstrap": "~3.3.6",
-    "angular-ui-router": "ui-router#~0.2.15"
+    "angular-ui-router": "ui-router#~0.2.15",
+    "angular-ui-router-anim-in-out": "~1.0.2"
   }
 }
