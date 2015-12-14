@@ -2,10 +2,17 @@ angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
 .controller( 'HomeCtrl', HomeCtrl )
 .config( config )
 .config( routes )
-.run();
+.run( [ '$rootScope', function( $rootScope ) {
+  var web3 = new Web3();
+  web3.setProvider( new web3.providers.HttpProvider() );
+  $rootScope.web3 = web3;
+  window.web3 = web3;
+
+  $rootScope.$watch( $rootScope.web3.eth.getBalance(web3.eth.coinbase).c ) // :p
+}]);
 
 config.$inject = ['$urlRouterProvider', '$locationProvider' ];
-  function config($urlProvider, $locationProvider, $analyticsProvider, $cookies) {
+  function config($urlProvider, $locationProvider, $analyticsProvider, $cookies, $rootScope, $window ) {
     $urlProvider.otherwise('/');
 
     $locationProvider.html5Mode({
@@ -14,10 +21,11 @@ config.$inject = ['$urlRouterProvider', '$locationProvider' ];
     });
 
     $locationProvider.hashPrefix('!');
+
   }
 
 window.onload = function() {
-
+/*
   window.web3 = new Web3(); // ??
 
   window.forumContract = 0xfc7575c74363e9e554e6b0a6b7f43f740010fb1e;
@@ -27,5 +35,6 @@ window.onload = function() {
   web3.setProvider( new web3.providers.HttpProvider() );
 
   document.getElementById( 'eth_coinbase' ).innerText = web3.eth.coinbase;
+*/
 
 };
