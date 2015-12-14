@@ -16,6 +16,7 @@ You may run it locally (devnet) as well!
 
 * whisper integration
 * alt clients (mobile?)
+* integrate with [ethereumjs-accounts](https://github.com/SilentCicero/ethereumjs-accounts)
 
 ## Contact
 
