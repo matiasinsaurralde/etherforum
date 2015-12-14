@@ -3,17 +3,8 @@ var concat = require("gulp-concat");
 var clean = require("gulp-clean");
 
 var paths = {
-    "dist": "../server/staffing/static/",
-    "vendor": ['vendor/underscore/underscore.js',
-        'vendor/angular/angular.min.js',
-        'vendor/angular-route/angular-route.min.js',
-        'vendor/restangular/dist/restangular.min.js',
-        'vendor/angular-animate/angular-animate.min.js',
-        'vendor/angular-bootstrap/ui-bootstrap-0.7.0.min.js',
-        'vendor/angular-bootstrap/ui-bootstrap-tpls-0.7.0.min.js',
-        'vendor/angular-ui-router/release/angular-ui-router.min.js',
-        'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
-        'vendor/momentjs/min/moment.min.js'],
+    "dist": "../build",
+    "vendor": [ 'bower_components/angular/angular.js' ],
     "scripts": ['app/**/*.js'],
     "fonts": ['app-data/fonts/*.*'],
     "templates": ['app/**/*.html'],
