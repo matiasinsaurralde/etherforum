@@ -4,18 +4,30 @@ var clean = require("gulp-clean");
 
 var paths = {
     "dist": "../build",
+    "appDist": "../build/app",
     "vendor": [ 'bower_components/angular/angular.js' ],
-    "scripts": ['app/**/*.js'],
+    "scripts": ['app/controllers/*.js', 'app/*.js' ],
     "fonts": ['app-data/fonts/*.*'],
-    "templates": ['app/**/*.html'],
+    "templates": [ 'app/**/*.html'],
     "styles": ['app/**/*.scss','vendor/angular-bootstrap-colorpicker/css/*.css']
 }
 
 gulp.task("watch", function () {
-    gulp.watch('app/**/*.js', ['scripts']);
-    gulp.watch('app/**/*.html', ['scripts'])
-    gulp.watch('app/**/*.scss', ['styles']);
+  gulp.watch( 'app/**/*.html', [ 'templates' ] );
+  gulp.watch( 'app/controllers/*.js', [ 'scripts' ] );
+  // gulp.watch( 'app/*.js', [ 'scripts' ] );
+  // gulp.watch( 'app/resources/stylesheets/*', [ 'styles' ] );
 })
+
+gulp.task( 'templates', function() {
+  gulp.src( paths.templates )
+    .pipe( gulp.dest( paths.appDist ) );
+});
+
+gulp.task( 'scripts', function() {
+  gulp.src( paths.scripts )
+    .pipe( gulp.dest( paths.appDist ) );
+});
 
 gulp.task("default", ["clean"], function () {
     gulp.start("scripts", "vendor", "styles", "fonts");
