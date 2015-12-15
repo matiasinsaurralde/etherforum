@@ -11,3 +11,8 @@ body {
 .anim-in-out.anim-in-setup {
     position: absolute;
 }
+
+@media (min-width: 780px) and (max-width: 990px) {
+.container {
+    width: 800px;
+}
