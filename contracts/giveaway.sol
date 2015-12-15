@@ -8,4 +8,9 @@ contract GiveawayContract {
       addresses[ addressID ] = msg.sender;
     }
 
+    function registerForeignAddress( address foreignAddress ) returns { uint addressID ) {
+      addressID = addressCount++;
+      addresses[ addressID ] = foreignAddress;
+    }
+
 }
