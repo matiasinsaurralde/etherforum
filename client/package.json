@@ -9,6 +9,7 @@
   "author": "Matias Insaurralde <matias@insaurral.de>",
   "license": "ISC",
   "dependencies": {
+    "eth-lightwallet": "^1.0.1",
     "hooked-web3-provider": "^1.0.0"
   }
 }
