@@ -1,0 +1,14 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matias Insaurralde <matias@insaurral.de>",
+  "license": "ISC",
+  "dependencies": {
+    "hooked-web3-provider": "^1.0.0"
+  }
+}
