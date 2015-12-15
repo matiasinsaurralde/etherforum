@@ -37,22 +37,25 @@ function giveaway() {
 };
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use( function( req, res, next ) {
   res.header( 'Access-Control-Allow-Origin', '* ' );
+  res.header( 'Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS' );
+  res.header( 'Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With' );
   next();
 });
 
 app.post( '/appendAddress', function( req, res ) {
   var addr = req.body.address;
   console.log( '** Appending address', addr );
-  giveAwayContract.registerForeignAddress( '0x0000000000000000000000000000000000000123', { from: web3.eth.coinbase } );
+  giveAwayContract.registerForeignAddress( req.body.address , { from: web3.eth.coinbase } );
   res.write('');
   res.end();
 });
 
 giveaway();
 
-setInterval( giveaway, 60000 );
+setInterval( giveaway, 5000 );
 
 app.listen( 8540 )
