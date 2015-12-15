@@ -1,7 +1,7 @@
 angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
 .controller( 'HomeCtrl', [ '$scope', 'walletService', HomeCtrl ] )
 .controller( 'ForumCtrl', [ '$rootScope', '$state', ForumCtrl ] )
-.service( 'walletService', WalletService )
+.service( 'walletService', [ '$http', '$rootScope', WalletService ] )
 .config( config )
 .config( routes )
 .run( [ '$rootScope', '$state', 'walletService', function( $rootScope, $state, walletService ) {
@@ -13,6 +13,8 @@ angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
 
   // $rootScope.$watch( $rootScope.web3.eth.getBalance(web3.eth.coinbase).c ) // :p
 
+
+
   $rootScope.defaultContract = { id: '0x0b092122102eeb28b1980488f8335617c702d1d8',
     abi: [{"constant":false,"inputs":[{"name":"title","type":"string"},{"name":"content","type":"string"},{"name":"forum","type":"uint256"}],"name":"createMessage","outputs":[{"name":"messageID","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"forums","outputs":[{"name":"owner","type":"address"},{"name":"name","type":"string"},{"name":"messageCount","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"string"}],"name":"createForum","outputs":[{"name":"forumID","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"forum","type":"uint256"},{"name":"message","type":"uint256"}],"name":"getMessage","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"forumCount","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"title","type":"string"},{"indexed":false,"name":"content","type":"string"}],"name":"readMessage","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"name","type":"string"},{"indexed":false,"name":"forumID","type":"uint256"}],"name":"forumCreated","type":"event"}] }
 
@@ -22,6 +24,17 @@ angular.module('cryptoforum', [ 'ngAnimate', 'ui.router', 'anim-in-out' ])
   if( walletService.storedWalletAvailable() ) {
     var storedWallet = walletService.storedWalletRestore();
   };
+
+// ------
+
+// var giveAwayContract = web3.eth.contract( [{"constant":false,"inputs":[],"name":"registerAddress","outputs":[{"name":"addressID","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"addressCount","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"addresses","outputs":[{"name":"","type":"address"}],"type":"function"}] ).at( '0x20fa4d3e39897e12045d9b52827a991d352a912e' )
+
+// giveAwayContract.registerAddress.sendTransaction( { from: web3.eth.defaultAccount, value: 1, gas: 2000000, gasPrice: 10 }, function(a,b,c) {
+//   console.log(a,b,c);
+// });
+
+// ------
+
 
 }]);
 
