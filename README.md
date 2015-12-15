@@ -1,7 +1,7 @@
 <span class="badge-paypal"><a href="http://paypal.me/matiasinsaurralde" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 <span class="badge-bitcoin"><a href="http://coinbase.com/matiasbaruch" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
 
-# cryptoforum
+# etherforum
 
 An experimental / proof of concept / distributed forum built on top of Ethereum
 
