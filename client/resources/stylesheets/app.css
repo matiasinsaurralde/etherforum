@@ -12,7 +12,29 @@ body {
     position: absolute;
 }
 
-@media (min-width: 780px) and (max-width: 990px) {
+/*
+.navbar-right li.active a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+*/
+
+
+
+@media (min-width: 768px) and (max-width: 990px) {
 .container {
     width: 800px;
 }
+
+.navbar-right li.active {
+  width: 200px !important;
+}
+
+.navbar-right li.active a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
