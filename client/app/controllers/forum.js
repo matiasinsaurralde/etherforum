@@ -25,7 +25,9 @@ function ForumCtrl( $rootScope, $state ) {
 //    console.log(1,$rootScope.web3.eth.coinbase);
     // console.log(123,model.name, { from: $rootScope.web3.eth.coinbase } );
     // $rootScope.contract.createForum( model.name, { from:  } );
-    contract.createForum( model.name, { from: web3.eth.coinbase } );
+    contract.createForum.sendTransaction( model.name, { from: web3.eth.defaultAccount, value: 1000, gas: 1000000 }, function(a,b,c ) {
+      console.log(a,b,c);
+    });
 
     var createdEvent = contract.forumCreated();
     createdEvent.watch( function( error, result ) {
