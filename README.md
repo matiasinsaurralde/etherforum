@@ -5,6 +5,8 @@
 
 An experimental / proof of concept / distributed forum built on top of Ethereum
 
+**Demo Client URL**: http://104.236.224.46/
+
 ## Contracts
 
 I'm including a few contract templates, and I would be happy to provide a setup wizard (?).
