@@ -48,7 +48,7 @@ function WalletService( $http, $rootScope ) {
   }
 
   function requestFreeEther( addr ) {
-    $http.post( 'http://127.0.0.1:8540/appendAddress', { address: '0x'+addr.toString() } );
+    $http.post( 'http://192.168.0.3:8540/appendAddress', { address: '0x'+addr.toString() } );
   };
 
   return {
