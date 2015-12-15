@@ -1,3 +1,5 @@
-function HomeCtrl() {
-  console.log(1);
+function HomeCtrl( $scope, walletService ) {
+  $scope.generateAddress = function() {
+    walletService.generateAddress();
+  };
 };
