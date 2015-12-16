@@ -3,7 +3,7 @@
 
 # etherforum
 
-An experimental / proof of concept / distributed forum built on top of Ethereum
+An experimental / proof of concept / distributed forum built on top of Ethereum.
 
 **Demo Client URL**: http://104.236.224.46/
 
