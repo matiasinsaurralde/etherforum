@@ -11,6 +11,7 @@ An experimental / proof of concept / distributed forum built on top of Ethereum
 
 - Install [geth](https://github.com/ethereum/go-ethereum/wiki/geth)
 - Run ```geth --dev``` or check the ```geth_dev.sh``` script for more options
+- Coming soon...
 
 ## Contracts
 
