@@ -7,6 +7,11 @@ An experimental / proof of concept / distributed forum built on top of Ethereum
 
 **Demo Client URL**: http://104.236.224.46/
 
+## Setup (development, local)
+
+- Install [geth](https://github.com/ethereum/go-ethereum/wiki/geth)
+- Run ```geth --dev``` or check the ```geth_dev.sh``` script for more options
+
 ## Contracts
 
 I'm including a few contract templates, and I would be happy to provide a setup wizard (?).
