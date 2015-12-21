@@ -29,6 +29,7 @@ You may run it locally (devnet) as well!
 * alt clients (mobile?)
 * integrate with [ethereumjs-accounts](https://github.com/SilentCicero/ethereumjs-accounts)
 * switch to [truffle](https://github.com/ConsenSys/truffle) or similar framework
+* dockerize
 
 ## Contact
 
