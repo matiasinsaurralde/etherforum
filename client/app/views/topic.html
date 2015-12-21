@@ -1,0 +1,28 @@
+<div ng-controller="TopicCtrl as t">
+<h3>Topic: {{ t.topic[1] }}</h3>
+<p>
+  {{ t.topic[2] }}
+</p>
+<h3>Replies</h3>
+<div ng-repeat="( topic_id, topic ) in f.topics" class="row">
+
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{  topic[1] }}</h3>
+        <small><b>Owner:</b> {{ topic[0] }} / <b>Topic ID</b> {{ topic_id }}</small>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-10">
+            {{ topic[2] }}
+          </div>
+          <div class="col-xs-2"><p><a ui-sref="forums.topics.read( { id: f.forum.id, topic_id: topic_id } )">Read</a></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
