@@ -21,4 +21,12 @@ function routes( $stateProvider, $urlRouterProvider) {
       '@': { templateUrl: 'app/views/forums_create.html' }
     }
   })
+  .state( 'forums.messages', {
+    name: 'forums.messages',
+    url: '/:id/messages',
+    params: { 'id': null },
+    views: {
+      '@': { templateUrl: 'app/views/forums_messages.html' }
+    }
+  })
 }
