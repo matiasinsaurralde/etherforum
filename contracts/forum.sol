@@ -1,48 +1,60 @@
-contract ForumContract {
+contract Forum {
     
-    mapping ( uint => Forum ) public forums;
-    // mapping( uint => Message ) public messages;
+    mapping( uint => Forum ) public forums; // forum id points to Forum
+    mapping( uint => bytes32[] ) public forums_topics; // forum id points to array of Topic IDs
     
-    uint public forumCount;
+    mapping( bytes32 => Topic ) public topics;  // topic id points to Topic
+    mapping( bytes32 => bytes32[] ) public topic_posts; // topic id points to array of Post IDs
+    
+    mapping( bytes32 => Post ) public posts; // post id points to Post
+    
+    uint public ForumCount;
     
     struct Forum {
         address owner;
         string name;
-        mapping( uint => Message ) messages;
-        uint messageCount;
+        uint TopicCount;
     }
-    
-    struct Message {
-        string title;
+    struct Topic {
+        address owner;
+        string name;
+        string content;
+        uint PostCount;
+    }
+    struct Post {
+        address owner;
+        string name;
         string content;
     }
     
-    event readMessage(string title, string content);
-    event forumCreated(string name, uint forumID);
-    
-    function createForum( string name ) returns( uint forumID ) {
-        forumID = forumCount++;
-        Forum f = forums[ forumID ];
+    function createForum( string name ) returns( uint forumId ) {
+        forumId = ForumCount++;
+        Forum f = forums[ forumId ];
         f.name = name;
         f.owner = msg.sender;
-        
-        forumCreated( name, forumID );
-    }
-    function createMessage( string title, string content, uint forum ) returns( uint messageID ) {
- 
-        Forum f = forums[ forum ];
-        messageID = f.messageCount++;
-        Message m = f.messages[ messageID ];
-        
-        m.title = title;
-        m.content = content;
     }
     
-    function getMessage( uint forum, uint message ) {
-        Forum f = forums[ forum ];
-        Message m = f.messages[ message ];
+    function createTopic( string name, string content, uint forum ) returns( bytes32 topicId ) {
+        topicId = sha3( name, content );
+        var topic = Topic( msg.sender, name, content, 0 );
+        topics[ topicId ] = topic;
         
-        readMessage( m.title, m.content );
+        forums_topics[ forum ].push( topicId );
+        
+        Forum f = forums[ forum ];
+        f.TopicCount++;
     }
-
+    
+    function createPost( string name, string content, bytes32 topic ) returns( bytes32 postId ) {
+        postId = sha3( name, content );
+        var post = Post( msg.sender, name, content );
+        posts[ postId ] = post;
+        
+        topic_posts[ topic ].push( postId );
+        
+        Topic t = topics[ topic ];
+        t.PostCount++;
+    }
+    
+    
 }
