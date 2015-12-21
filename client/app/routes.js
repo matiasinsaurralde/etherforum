@@ -21,12 +21,20 @@ function routes( $stateProvider, $urlRouterProvider) {
       '@': { templateUrl: 'app/views/forums_create.html' }
     }
   })
-  .state( 'forums.messages', {
-    name: 'forums.messages',
-    url: '/:id/messages',
-    params: { 'id': null },
+  .state( 'forums.topics', {
+    name: 'forums.topics',
+    url: '/:id/topics',
+    params: { id: null },
     views: {
-      '@': { templateUrl: 'app/views/forums_messages.html' }
+      '@': { templateUrl: 'app/views/forums_topics.html' }
+    }
+  })
+  .state( 'forums.topics.read', {
+    name: 'forums.topics.read',
+    url: '/:topic_id',
+    params: { id: null, topic_id: null },
+    views: {
+      '@': { templateUrl: 'app/views/topic.html' }
     }
   })
 }
