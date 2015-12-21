@@ -1,7 +1,7 @@
 <div ng-controller="ForumCtrl as f">
 <h3>Forums</h3>
 <p ng-if="f.forums.length == 0">No forums!</p>
-<div ng-if="f.forums.length > 0" ng-repeat="forum in f.forums" class="row">
+<div ng-if="f.forums.length > 0" ng-repeat="(index, forum) in f.forums" class="row">
 
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -14,7 +14,7 @@
           <div class="col-xs-10">
             <p>Forum created by {{ forum.owner }}, and currently holding {{ forum.totalMessages }} messages.</p>
           </div>
-          <div class="col-xs-2"><p><a ui-sref="forums.read">Read</a></p></div>
+          <div class="col-xs-2"><p><a ui-sref="forums.messages( { id: index } )">Read</a></p></div>
         </div>
       </div>
     </div>
