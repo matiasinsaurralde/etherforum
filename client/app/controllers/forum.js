@@ -1,6 +1,5 @@
-function ForumCtrl( $rootScope, $state ) {
+function ForumCtrl( $rootScope, $state, $stateParams ) {
   var self = this;
-
   self.forums = [];
 
   function loadForums() {
@@ -18,13 +17,7 @@ function ForumCtrl( $rootScope, $state ) {
     };
   };
 
-  loadForums();
-
   self.createForum = function( model ) {
-    console.log( 'create forum!', model );
-//    console.log(1,$rootScope.web3.eth.coinbase);
-    // console.log(123,model.name, { from: $rootScope.web3.eth.coinbase } );
-    // $rootScope.contract.createForum( model.name, { from:  } );
     contract.createForum.sendTransaction( model.name, { from: web3.eth.defaultAccount, value: 1000, gas: 1000000 }, function(a,b,c ) {
       console.log(a,b,c);
     });
@@ -34,6 +27,30 @@ function ForumCtrl( $rootScope, $state ) {
       $state.go( 'forums' );
       createdEvent.stopWatching();
     });
+  };
+
+  self.loadForumMessages = function( id ) {
+    self.forum = contract.forums( id );
+    self.messages = [];
+    var totalMessages = self.forum[2].c[0],
+        i = 0;
+
+    var m = contract.readMessage();
+    m.watch( function( error, result ) {
+      console.log(123,error,result);
+    });
+
+    while( i < totalMessages ) {
+      var message = contract.getMessage( 0, i, function() {} );
+      console.log( i, message );
+      i++;
+    };
+  };
+
+  if( $stateParams.id ) {
+    self.loadForumMessages( $stateParams.id );
+  } else {
+    loadForums();
   };
 
 };
