@@ -4,14 +4,14 @@ function ForumCtrl( $rootScope, $state, $stateParams ) {
 
   function loadForums() {
     self.forums = [];
-    var q = contract.forumCount().c[0],
+    var q = contract.ForumCount().c[0],
         i = 0;
-
+	
       self.forums = [];
 
     while( i < q ) {
       var _forum = contract.forums( i ),
-          forum = { owner: _forum[0], name: _forum[1], totalMessages: _forum[2].c[0] };
+          forum = { owner: _forum[0], name: _forum[1], totalTopics: _forum[2].c[0] };
       self.forums.push( forum );
       i++;
     };
@@ -29,26 +29,26 @@ function ForumCtrl( $rootScope, $state, $stateParams ) {
     });
   };
 
-  self.loadForumMessages = function( id ) {
+  self.loadTopics = function( id ) {
     self.forum = contract.forums( id );
-    self.messages = [];
-    var totalMessages = self.forum[2].c[0],
+    self.forum.id = id;
+    self.topics = {};
+
+    var topicCount = self.forum[2].c[0],
         i = 0;
 
-    var m = contract.readMessage();
-    m.watch( function( error, result ) {
-      console.log(123,error,result);
-    });
-
-    while( i < totalMessages ) {
-      var message = contract.getMessage( 0, i, function() {} );
-      console.log( i, message );
+    while( i < topicCount ) {
+      var topic_id = contract.forums_topics( id, i );
+      var topic = contract.topics( topic_id )
+      // self.topics.push( topic );
+      self.topics[ topic_id ] = topic;
       i++;
     };
+
   };
 
   if( $stateParams.id ) {
-    self.loadForumMessages( $stateParams.id );
+    self.loadTopics( $stateParams.id );
   } else {
     loadForums();
   };
