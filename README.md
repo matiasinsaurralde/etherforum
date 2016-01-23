@@ -34,3 +34,8 @@ You may run it locally (devnet) as well!
 ## Contact
 
 Tips, ideas, etc: matias AT insaurral.de
+
+
+## License
+
+This is licensed under the [MIT license](https://github.com/matiasinsaurralde/etherforum/blob/master/LICENSE).
